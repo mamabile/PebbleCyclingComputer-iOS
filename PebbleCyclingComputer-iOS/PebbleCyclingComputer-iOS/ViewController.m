@@ -5,6 +5,8 @@
 //  Created by Nic Jackson on 23/05/2013.
 //  Copyright (c) 2013 Nic Jackson. All rights reserved.
 //
+//  Changed to Metric
+
 #import "ViewController.h"
 
 @implementation ViewController
@@ -84,13 +86,13 @@
     NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
     if (abs(howRecent) < 15.0) {
         // If the event is recent, do something with it.
-        double gpsSpeed = (location.speed * 2.23693629); // speed in m/s convert to miles per hour use 3.6 for kph
+        double gpsSpeed = (location.speed * 3.6); // speed in m/s convert to km per hour (use 2.23693629 for miles)
 
 
         double distance = 0;
 
         if(_prevLocation != nil) {
-            distance = [location distanceFromLocation:_prevLocation] * 0.000621371192;
+            distance = [location distanceFromLocation:_prevLocation] * 0.001; // // distance in meters use  0.000621371192 for miles
             if(distance > 0) {
                 _distance += distance;
             } else {
